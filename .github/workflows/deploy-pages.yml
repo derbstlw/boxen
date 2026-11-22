@@ -25,12 +25,11 @@ jobs:
         with:
           node-version: 22
           cache: npm
-          cache-dependency-path: ac-einigkeit-website/package-lock.json
+          cache-dependency-path: package-lock.json
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v5
       - name: Install and build
-        working-directory: ac-einigkeit-website
         env:
           ASTRO_SITE: ${{ steps.pages.outputs.origin }}
           ASTRO_BASE: ${{ steps.pages.outputs.base_path }}
@@ -40,7 +39,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ac-einigkeit-website/dist
+          path: dist
 
   deploy:
     environment:
