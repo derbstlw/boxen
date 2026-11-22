@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { siteUrl } from '../utils/site-url';
 ---
 <BaseLayout title="Trainingszeiten">
   <section class="section">
@@ -27,7 +28,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           </tbody>
         </table>
       </div>
-      <p class="mt-3">Bitte melden Sie sich <a href="/kontakt/">über den vereinbarten Kontaktweg</a>, sobald aktuelle Kontaktdaten hinterlegt sind.</p>
+      <p class="mt-3">Bitte melden Sie sich <a href={siteUrl('kontakt/')}>über den vereinbarten Kontaktweg</a>, sobald aktuelle Kontaktdaten hinterlegt sind.</p>
     </div>
   </section>
 </BaseLayout>

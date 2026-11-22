@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
+import { siteUrl } from '../utils/site-url';
 const articles = (await getCollection('articles')).filter((a) => !a.data.draft).sort((a,b) => b.data.date.valueOf() - a.data.date.valueOf()).slice(0,3);
 ---
 <BaseLayout title="Startseite">
@@ -9,7 +10,7 @@ const articles = (await getCollection('articles')).filter((a) => !a.data.draft).
       <p class="text-uppercase fw-bold mb-3">AC Einigkeit Elmshorn · seit 1893</p>
       <h1>Amateurboxen in Elmshorn.</h1>
       <p class="lead mt-4">Seit Jahrzehnten steht der Verein für Sport, Gemeinschaft und verantwortungsvolles Training. Willkommen beim AC Einigkeit Elmshorn von 1893 e. V.</p>
-      <a class="btn btn-club btn-lg mt-2" href="/training/">Trainingsangebote ansehen</a>
+      <a class="btn btn-club btn-lg mt-2" href={siteUrl('training/')}>Trainingsangebote ansehen</a>
     </div>
   </section>
   <section class="section">
@@ -25,7 +26,7 @@ const articles = (await getCollection('articles')).filter((a) => !a.data.draft).
     <div class="container">
       <h2 class="section-title">Aktuelle Meldungen</h2>
       {articles.length === 0 ? <p>Noch keine veröffentlichten Meldungen.</p> : <div class="row g-4">{articles.map((article) => (
-        <div class="col-md-6"><article class="card p-4"><time class="article-meta" datetime={article.data.date.toISOString()}>{article.data.date.toLocaleDateString('de-DE')}</time><h3 class="h5 mt-2"><a href={`/aktuelles/${article.slug}/`}>{article.data.title}</a></h3><p>{article.data.summary}</p></article></div>
+        <div class="col-md-6"><article class="card p-4"><time class="article-meta" datetime={article.data.date.toISOString()}>{article.data.date.toLocaleDateString('de-DE')}</time><h3 class="h5 mt-2"><a href={siteUrl(`aktuelles/${article.slug}/`)}>{article.data.title}</a></h3><p>{article.data.summary}</p></article></div>
       ))}</div>}
     </div>
   </section>
