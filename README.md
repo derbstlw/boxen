@@ -30,6 +30,8 @@ Jeder Artikel benötigt mindestens `title`, `date`, `summary` und kann `image` s
 3. Den Branch `main` (oder `master`) pushen. Der Workflow `.github/workflows/deploy-pages.yml` baut und veröffentlicht das Projekt.
 4. Falls GitHub die Pages-Workflow-Berechtigungen anfordert, diese in den Repository-Einstellungen erlauben.
 
+Wird Pages erst nach dem ersten Push aktiviert, den Workflow unter **Actions → Deploy GitHub Pages → Run workflow** manuell starten oder einen neuen Commit pushen.
+
 Die Domain ist in `public/CNAME` hinterlegt. GitHub Pages stellt Hosting und HTTPS ohne zusätzliche Hostinggebühr bereit. Die Domainregistrierung selbst bleibt davon getrennt und muss beim bisherigen Registrar verlängert werden. Vor dem Umzug muss ein Club-Administrator die DNS-Einträge beim Registrar auf die von GitHub Pages angegebenen Werte umstellen. Astro erhält die Website-URL und den Basispfad im Deployment automatisch aus der Pages-Konfiguration.
 
 ## Eigene Domain
