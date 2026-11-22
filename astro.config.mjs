@@ -1,5 +1,8 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 
-// https://astro.build/config
-export default defineConfig({});
+export default defineConfig({
+  output: 'static',
+  site: process.env.ASTRO_SITE || 'https://ac-einigkeit-elmshorn.de',
+  base: process.env.ASTRO_BASE || '/',
+});

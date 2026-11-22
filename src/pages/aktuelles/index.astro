@@ -1,0 +1,23 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+const articles = (await getCollection('articles')).filter((a) => !a.data.draft).sort((a,b) => b.data.date.valueOf() - a.data.date.valueOf());
+---
+<BaseLayout title="Aktuelles">
+  <section class="section">
+    <div class="container">
+      <p class="text-uppercase fw-bold text-danger">Neuigkeiten</p>
+      <h1 class="section-title">Aktuelles</h1>
+      {articles.length === 0 ? <p>Derzeit sind keine veröffentlichten Meldungen vorhanden.</p> : <div class="row g-4">{articles.map((article) => (
+        <div class="col-md-6">
+          <article class="card p-4">
+            <time class="article-meta" datetime={article.data.date.toISOString()}>{article.data.date.toLocaleDateString('de-DE')}</time>
+            <h2 class="h4 mt-2"><a href={`/aktuelles/${article.slug}/`}>{article.data.title}</a></h2>
+            <p>{article.data.summary}</p>
+          </article>
+        </div>
+      ))}</div>}
+      <p class="mt-4"><a href="/articles.md">Dokumentiertes Markdown-Format</a></p>
+    </div>
+  </section>
+</BaseLayout>

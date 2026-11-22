@@ -1,0 +1,50 @@
+---
+import 'bootstrap/dist/css/bootstrap.min.css';
+import '../styles/global.css';
+
+interface Props { title: string; description?: string }
+const { title, description = 'AC Einigkeit Elmshorn von 1893 e. V. – Amateurboxen in Elmshorn.' } = Astro.props;
+---
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content={description} />
+    <title>{title} | AC Einigkeit Elmshorn</title>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Zum Inhalt springen</a>
+    <header class="site-header">
+      <nav class="navbar navbar-expand-lg" aria-label="Hauptnavigation">
+        <div class="container">
+          <a class="navbar-brand wordmark" href="/" aria-label="AC Einigkeit Elmshorn Startseite">
+            <span class="wordmark-ac">AC</span><span>Einigkeit</span><small>Elmshorn · seit 1893</small>
+          </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Navigation öffnen">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="mainNav">
+            <ul class="navbar-nav ms-auto">
+              <li class="nav-item"><a class="nav-link" href="/">Start</a></li>
+              <li class="nav-item"><a class="nav-link" href="/verein/">Verein</a></li>
+              <li class="nav-item"><a class="nav-link" href="/training/">Training</a></li>
+              <li class="nav-item"><a class="nav-link" href="/aktuelles/">Aktuelles</a></li>
+              <li class="nav-item"><a class="nav-link" href="/kontakt/">Kontakt</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <main id="main"><slot /></main>
+    <footer class="site-footer">
+      <div class="container">
+        <div class="row gy-3">
+          <div class="col-md"><strong>AC Einigkeit Elmshorn von 1893 e. V.</strong><p class="mb-0">Amateurboxen in Elmshorn</p></div>
+          <div class="col-md-auto"><a href="/impressum/">Impressum</a><a class="ms-3" href="/datenschutz/">Datenschutz</a></div>
+        </div>
+      </div>
+    </footer>
+    <script>import 'bootstrap/dist/js/bootstrap.bundle.min.js';</script>
+  </body>
+</html>

@@ -1,43 +1,49 @@
-# Astro Starter Kit: Minimal
+# AC Einigkeit Elmshorn – Website
 
-```sh
-npm create astro@latest -- --template minimal
+Statische deutsche Vereinsseite auf Basis von Astro und Bootstrap 5.
+
+## Lokal prüfen
+
+```powershell
+cd ac-einigkeit-website
+npm install
+npm run dev
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+Der lokale Server zeigt die angezeigte URL (standardmäßig `http://localhost:4321`). Für einen Produktions-Build:
 
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+```powershell
+npm run build
+npm run preview
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## Artikel hinzufügen
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+Neue Markdown-Dateien werden unter `src/content/articles/` abgelegt. Das dokumentierte Frontmatter-Format liegt in `public/articles.md` und ist auf der Seite über den Link „Dokumentiertes Markdown-Format“ erreichbar.
 
-Any static assets, like images, can be placed in the `public/` directory.
+Jeder Artikel benötigt mindestens `title`, `date`, `summary` und kann `image` sowie `draft` enthalten. Entwürfe mit `draft: true` erscheinen nicht in Listen oder Artikel-Routen.
 
-## 🧞 Commands
+## GitHub Pages einrichten
 
-All commands are run from the root of the project, from a terminal:
+1. Das Projekt in ein **öffentliches** GitHub-Repository übernehmen (GitHub Pages ist im kostenlosen GitHub-Tarif für öffentliche Repositories verfügbar).
+2. Unter **Settings → Pages** als Quelle **GitHub Actions** auswählen und als Custom Domain `ac-einigkeit-elmshorn.de` eintragen.
+3. Den Branch `main` (oder `master`) pushen. Der Workflow `.github/workflows/deploy-pages.yml` baut und veröffentlicht das Projekt.
+4. Falls GitHub die Pages-Workflow-Berechtigungen anfordert, diese in den Repository-Einstellungen erlauben.
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+Die Domain ist in `public/CNAME` hinterlegt. GitHub Pages stellt Hosting und HTTPS ohne zusätzliche Hostinggebühr bereit. Die Domainregistrierung selbst bleibt davon getrennt und muss beim bisherigen Registrar verlängert werden. Vor dem Umzug muss ein Club-Administrator die DNS-Einträge beim Registrar auf die von GitHub Pages angegebenen Werte umstellen. Astro erhält die Website-URL und den Basispfad im Deployment automatisch aus der Pages-Konfiguration.
 
-## 👀 Want to learn more?
+## Eigene Domain
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+Das Projekt ändert keine DNS-Einträge. Die DNS-Konfiguration erfolgt durch einen Club-Administrator beim Domain-Registrar:
+
+- `ac-einigkeit-elmshorn.de` ist eine Apex-Domain. Beim Registrar müssen die aktuell von GitHub Pages dokumentierten A-/AAAA-Einträge gesetzt werden.
+- Die Domain wird unter **Settings → Pages → Custom domain** eingetragen; anschließend HTTPS aktivieren.
+- Vor der Veröffentlichung müssen die DNS-Einträge verifiziert und die übliche Fortpflanzungszeit abgewartet werden.
+
+## Noch vor dem Launch vom Verein bestätigen
+
+- Aktuelle Trainingszeiten, Altersgruppen und Teilnahmebedingungen
+- Kontakt-E-Mail, Telefon, Zuständigkeit und Probetraining
+- Vereinsgeschichte und Funktionsinhaber
+- Rechtlich geprüfte Texte für Impressum und Datenschutz
+- Erlaubnis zur Verwendung eines offiziellen Logos oder anderer Bildrechte
